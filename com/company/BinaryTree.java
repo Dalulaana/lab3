@@ -1,6 +1,7 @@
 package com.company;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Stack;
 
 public class BinaryTree<K extends Comparable<K>, V> implements Iterable<BinaryTree.Entry<K, V>>
 {
@@ -82,6 +83,7 @@ public class BinaryTree<K extends Comparable<K>, V> implements Iterable<BinaryTr
         return size==0;
     }
 
+
     @Override
     public Iterator<Entry<K, V>> iterator()
     {
@@ -106,8 +108,8 @@ public class BinaryTree<K extends Comparable<K>, V> implements Iterable<BinaryTr
 
     public class Entry<K, V>
     {
-        private K key;
-        private V value;
+        K key;
+        V value;
         public Entry(K key, V value)
         {
             this.key=key;
@@ -137,5 +139,33 @@ public class BinaryTree<K extends Comparable<K>, V> implements Iterable<BinaryTr
             return new Entry<>(node.key, node.value);
         }
     }
+
+    public Entry<K, V> find(K key)
+    {
+        Node node = find(root, key);
+        return node != null ? new Entry<>(node.key, node.value) : null;
+    }
+
+    private Node find(Node node, K key)
+    {
+        if (node==null)
+        {
+            return null;
+        }
+        int cmp=key.compareTo(node.key);
+        if (cmp<0)
+        {
+            return find(node.left, key);
+        }
+        else if (cmp>0)
+        {
+            return find(node.right, key);
+        }
+        else
+        {
+            return node;
+        }
+    }
+
 
 }

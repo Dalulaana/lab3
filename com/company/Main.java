@@ -2,6 +2,7 @@ package com.company;
 import java.util.Scanner;
 public class Main
 {
+    /*
     public static void main(String[] args)
     {
         BinaryTree<Integer, String> tree = new BinaryTree<>();
@@ -17,6 +18,28 @@ public class Main
         {
             System.out.println("key is "+entry.key+" and value is "+entry.value);
         }
-
     }
+    */
+    public static void main(String[] args)
+    {
+        BinaryTree<Integer, String> binaryTree = new BinaryTree<>();
+
+        binaryTree.put(5, "5");
+        binaryTree.put(3, "3");
+        binaryTree.put(7, "7");
+        binaryTree.put(2, "2");
+        binaryTree.put(4, "4");
+
+        int toFind=3;
+        Entry<Integer, String> entry=binaryTree.find(toFind);
+        if (entry!=null)
+        {
+            System.out.println(entry.key+" "+entry.value);
+        }
+        else
+        {
+            System.out.println("not found");
+        }
+    }
+
 }
